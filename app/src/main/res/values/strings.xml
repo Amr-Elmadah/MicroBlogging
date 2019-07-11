@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">MicroBlogging</string>
     <string name="internet_connection">No internet connection</string>
+
+    //AuthorsList
+    <string name="authors_list">Authors List</string>
+    <string name="no_data">No data</string>
 </resources>

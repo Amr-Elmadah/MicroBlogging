@@ -90,6 +90,7 @@ dependencies {
     kapt glideDependencies.compiler
     implementation presentationDependencies.roundedImageView
     kapt dataBindingDependencies.dataBinding
+    kapt presentationDependencies.avLoader
 
     // dagger
     implementation daggerDependencies.dagger
