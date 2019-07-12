@@ -32,7 +32,7 @@ abstract class BaseRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHo
             }
             else -> {
                 val v = mainItemView(parent)
-                mainItemViewHolder(v)
+                mainItemViewHolder(parent)
             }
         }
     }
@@ -200,7 +200,7 @@ abstract class BaseRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHo
 
     protected abstract fun mainItemView(parent: ViewGroup): View
 
-    protected abstract fun mainItemViewHolder(view: View): RecyclerView.ViewHolder
+    protected abstract fun mainItemViewHolder(parent: ViewGroup): RecyclerView.ViewHolder
 
     protected abstract fun onBindMainViewHolder(holder: RecyclerView.ViewHolder, position: Int)
     protected abstract fun getAdapterPageSize(): Int

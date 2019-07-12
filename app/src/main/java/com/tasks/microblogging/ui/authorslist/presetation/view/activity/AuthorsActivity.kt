@@ -1,6 +1,7 @@
 package com.tasks.microblogging.ui.authorslist.presetation.view.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -13,6 +14,7 @@ import com.tasks.microblogging.base.presentation.view.extension.setVisible
 import com.tasks.microblogging.base.presentation.view.extension.showSnack
 import com.tasks.microblogging.base.presentation.viewmodel.ViewModelFactory
 import com.tasks.microblogging.data.remote.network.response.Author
+import com.tasks.microblogging.ui.authordetails.presentation.view.activity.AuthorDetailsActivity
 import com.tasks.microblogging.ui.authorslist.data.local.mapToUI
 import com.tasks.microblogging.ui.authorslist.presetation.view.adapter.AuthorsAdapter
 import com.tasks.microblogging.ui.authorslist.presetation.viewmodel.AuthorsViewModel
@@ -39,10 +41,6 @@ class AuthorsActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
         setContentView(R.layout.activity_authors)
         setupControllers()
-    }
-
-    override fun onStart() {
-        super.onStart()
         getAuthors()
     }
 
@@ -54,10 +52,10 @@ class AuthorsActivity : AppCompatActivity() {
 
     private fun setupToolbar() {
         setSupportActionBar(toolbar)
+        supportActionBar?.title = getString(R.string.authors_list)
     }
 
     private fun getAuthors() {
-        supportActionBar?.title = getString(R.string.authors_list)
         mViewModel.getAuthors()
     }
 
@@ -65,7 +63,9 @@ class AuthorsActivity : AppCompatActivity() {
         manager.orientation = RecyclerView.VERTICAL
         rvAuthors.layoutManager = manager
         rvAuthors.adapter = adapter
-        srlAuthors.setOnRefreshListener { mViewModel.getAuthors() }
+        srlAuthors.setOnRefreshListener {
+            getAuthors()
+        }
     }
 
     @SuppressLint("CheckResult")
@@ -115,7 +115,8 @@ class AuthorsActivity : AppCompatActivity() {
     }
 
     private fun openAuthorDetailsActivity(author: Author) {
-        //TODO: If required to open details activity of the clicked author
-        llMainContent.showSnack(author.email)
+        val detailsIntent = Intent(this, AuthorDetailsActivity::class.java)
+        detailsIntent.putExtra(AuthorDetailsActivity.EXTRA_AUTHOR, author)
+        startActivity(detailsIntent)
     }
 }

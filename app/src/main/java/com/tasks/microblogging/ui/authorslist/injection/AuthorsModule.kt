@@ -6,8 +6,8 @@ import com.tasks.microblogging.data.local.dao.AuthorDao
 import com.tasks.microblogging.data.remote.network.retrofit.MicroBloggingAPI
 import com.tasks.microblogging.ui.authorslist.data.local.AuthorsLocalDataSource
 import com.tasks.microblogging.ui.authorslist.data.remote.AuthorsRemoteDataSource
-import com.tasks.microblogging.ui.authorslist.domain.interactor.AddAuthorsLocalUseCase
 import com.tasks.microblogging.ui.authorslist.domain.interactor.GetAuthorsUseCase
+import com.tasks.microblogging.ui.authorslist.domain.interactor.AddAuthorsLocalUseCase
 import com.tasks.microblogging.ui.authorslist.domain.interactor.GetCachedAuthorsUseCase
 import com.tasks.microblogging.ui.authorslist.domain.repository.AuthorsRepository
 import com.tasks.microblogging.ui.authorslist.domain.repository.AuthorsRepositoryImp

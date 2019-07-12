@@ -12,10 +12,8 @@ class AuthorsRepositoryImp @Inject constructor(
     private val remoteDataSource: AuthorsRemoteDataSource,
     private val localDataSource: AuthorsLocalDataSource
 ) : AuthorsRepository {
-
     override fun getCachedAuthors(): LiveData<List<AuthorEntity>> =
         localDataSource.getCachedAuthors()
-
 
     override fun insertAuthors(authors: List<AuthorEntity>): Single<Boolean> =
         localDataSource.insertAuthors(authors = authors)

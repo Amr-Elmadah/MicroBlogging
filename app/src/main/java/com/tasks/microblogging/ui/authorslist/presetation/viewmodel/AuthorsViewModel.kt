@@ -8,8 +8,8 @@ import com.tasks.microblogging.base.presentation.viewmodel.BaseViewModel
 import com.tasks.microblogging.data.local.entity.AuthorEntity
 import com.tasks.microblogging.data.remote.network.response.Author
 import com.tasks.microblogging.ui.authorslist.data.local.map
-import com.tasks.microblogging.ui.authorslist.domain.interactor.AddAuthorsLocalUseCase
 import com.tasks.microblogging.ui.authorslist.domain.interactor.GetAuthorsUseCase
+import com.tasks.microblogging.ui.authorslist.domain.interactor.AddAuthorsLocalUseCase
 import com.tasks.microblogging.ui.authorslist.domain.interactor.GetCachedAuthorsUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

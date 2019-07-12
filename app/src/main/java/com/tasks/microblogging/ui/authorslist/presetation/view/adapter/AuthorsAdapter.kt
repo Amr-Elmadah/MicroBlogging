@@ -1,22 +1,21 @@
 package com.tasks.microblogging.ui.authorslist.presetation.view.adapter
 
 import android.nfc.tech.MifareUltralight.PAGE_SIZE
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.tasks.microblogging.R
 import com.tasks.microblogging.base.presentation.view.adapter.BaseRecyclerAdapter
-import com.tasks.microblogging.base.presentation.view.extension.getInflatedView
 import com.tasks.microblogging.data.remote.network.response.Author
+import com.tasks.microblogging.databinding.ItemAuthorBinding
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
-import kotlinx.android.synthetic.main.item_author.view.*
 
 
 class AuthorsAdapter : BaseRecyclerAdapter<Author>() {
 
     private val mViewClickSubject = PublishSubject.create<Author>()
+    private lateinit var binding: ItemAuthorBinding
 
     fun getViewClickedObservable(): Observable<Author> {
         return mViewClickSubject
@@ -27,12 +26,13 @@ class AuthorsAdapter : BaseRecyclerAdapter<Author>() {
     }
 
     override fun mainItemView(parent: ViewGroup): View {
-        return parent.getInflatedView(R.layout.item_author)
+        binding = ItemAuthorBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return binding.root
     }
 
-
-    override fun mainItemViewHolder(view: View): RecyclerView.ViewHolder {
-        return AuthorViewHolder(view)
+    override fun mainItemViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
+        binding = ItemAuthorBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return AuthorViewHolder(binding)
     }
 
     override fun onBindMainViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -44,11 +44,10 @@ class AuthorsAdapter : BaseRecyclerAdapter<Author>() {
         }
     }
 
-    private class AuthorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private class AuthorViewHolder(val binding: ItemAuthorBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Author) = with(itemView) {
-            tvAuthorName.text = item.name
-            tvAuthorEmail.text = item.email
-            Glide.with(context).load(item.avatarUrl).into(imgAuthor)
+            binding.item = item
+            binding.executePendingBindings()
         }
     }
 }
