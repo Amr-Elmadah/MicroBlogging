@@ -8,6 +8,6 @@ import javax.inject.Inject
 class AuthorDetailsRepositoryImp @Inject constructor(
     private val remoteDataSource: AuthorDetailsRemoteDataSource
 ) : AuthorDetailsRepository {
-    override fun getAuthorPosts(authorId: Int, page: Int, limit: Int, sort: String, order: String): Single<List<Post>> =
-        remoteDataSource.getAuthorPosts(authorId = authorId, page = page, limit = limit, sort = sort, order = order)
+    override fun getAuthorPosts(authorId: Int, page: Int, limit: Int): Single<List<Post>> =
+        remoteDataSource.getAuthorPosts(authorId = authorId, page = page, limit = limit)
 }

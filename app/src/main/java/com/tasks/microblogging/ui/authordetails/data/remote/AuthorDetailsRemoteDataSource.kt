@@ -6,6 +6,6 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class AuthorDetailsRemoteDataSource @Inject constructor(private val microBloggingAPI: MicroBloggingAPI) {
-    fun getAuthorPosts(authorId: Int, page: Int, limit: Int, sort: String, order: String): Single<List<Post>> =
-        microBloggingAPI.loadAuthorPosts(authorId = authorId, page = page, limit = limit, sort = sort, order = order)
+    fun getAuthorPosts(authorId: Int, page: Int, limit: Int): Single<List<Post>> =
+        microBloggingAPI.loadAuthorPosts(authorId = authorId, page = page, limit = limit)
 }

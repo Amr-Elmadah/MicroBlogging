@@ -35,7 +35,7 @@
                     android:layout_height="@dimen/_60sdp"
                     app:riv_oval="true"
                     android:scaleType="fitXY"
-                    bind:backgroundImageUrl="@{item.imageUrl}"
+                    bind:backgroundImageUrl="@{item.avatarUrl}"
                     app:riv_border_color="@android:color/black"
                     app:riv_border_width="@dimen/_2sdp"
                     android:src="@color/colorPrimary"/>

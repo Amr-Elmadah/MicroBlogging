@@ -13,8 +13,6 @@ class GetAuthorPostsUseCase @Inject constructor(private val repository: AuthorDe
         repository.getAuthorPosts(
             authorId = params.authorId,
             page = params.page,
-            order = params.order,
-            sort = params.sort,
             limit = params.limit
         )
 }

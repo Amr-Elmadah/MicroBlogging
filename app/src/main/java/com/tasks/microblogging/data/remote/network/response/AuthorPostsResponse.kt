@@ -24,7 +24,5 @@ data class Post(
 data class PostsParams(
     var authorId: Int,
     var page: Int,
-    var limit: Int,
-    var sort: String,
-    var order: String
+    var limit: Int
 )

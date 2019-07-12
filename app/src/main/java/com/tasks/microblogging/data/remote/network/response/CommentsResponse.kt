@@ -1,12 +1,13 @@
 package com.tasks.microblogging.data.remote.network.response
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class Comment(
     @SerializedName("id")
     var id: Int,
     @SerializedName("date")
-    var date: String,
+    var date: Date,
     @SerializedName("body")
     var body: String,
     @SerializedName("userName")
@@ -14,9 +15,9 @@ data class Comment(
     @SerializedName("email")
     var email: String,
     @SerializedName("avatarUrl")
-    var avatarUrl: Address,
+    var avatarUrl: String,
     @SerializedName("postId")
-    var postId: Address
+    var postId: Int
 )
 
 data class CommentsParams(

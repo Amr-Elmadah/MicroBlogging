@@ -14,7 +14,6 @@ interface MicroBloggingAPI {
     @GET("posts")
     fun loadAuthorPosts(
         @Query("authorId") authorId: Int, @Query("page") page: Int, @Query("_limit") limit: Int
-        , @Query("_sort") sort: String, @Query("_order") order: String
     ): Single<List<Post>>
 
     @GET("comments")

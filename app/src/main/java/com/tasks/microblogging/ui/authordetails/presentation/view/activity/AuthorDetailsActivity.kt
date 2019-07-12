@@ -1,6 +1,7 @@
 package com.tasks.microblogging.ui.authordetails.presentation.view.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -20,6 +21,7 @@ import com.tasks.microblogging.data.remote.network.response.PostsParams
 import com.tasks.microblogging.databinding.ActivityAuthorDetailsBinding
 import com.tasks.microblogging.ui.authordetails.presentation.view.adapter.PostsAdapter
 import com.tasks.microblogging.ui.authordetails.presentation.viewmodel.AuthorDetailsViewModel
+import com.tasks.microblogging.ui.postcomments.presentation.view.activity.PostCommentsActivity
 import com.tasks.microblogging.util.Constants
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_author_details.*
@@ -48,8 +50,6 @@ class AuthorDetailsActivity : AppCompatActivity(), BaseRecyclerAdapter.OnLoadMor
 
     private var page = 1
     private val limit = Constants.PAGE_SIZE
-    private val sort = "date"
-    private val order = "desc"
     private var isLastPage = false
     private var mPosts = ArrayList<Post>()
 
@@ -80,9 +80,7 @@ class AuthorDetailsActivity : AppCompatActivity(), BaseRecyclerAdapter.OnLoadMor
             PostsParams(
                 authorId = activityAuthorDetailsBinding.author!!.authorID,
                 page = page,
-                limit = limit,
-                sort = sort,
-                order = order
+                limit = limit
             )
         )
     }
@@ -158,7 +156,8 @@ class AuthorDetailsActivity : AppCompatActivity(), BaseRecyclerAdapter.OnLoadMor
     }
 
     private fun openPostCommentsActivity(post: Post) {
-        //TODO: If required to open details activity of the clicked author
-        llMainContent.showSnack(post.title)
+        val commentsIntent = Intent(this, PostCommentsActivity::class.java)
+        commentsIntent.putExtra(PostCommentsActivity.EXTRA_POST, post)
+        startActivity(commentsIntent)
     }
 }
