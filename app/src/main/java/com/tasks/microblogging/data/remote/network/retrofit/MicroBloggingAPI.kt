@@ -1,6 +1,7 @@
 package com.tasks.microblogging.data.remote.network.retrofit
 
 import com.tasks.microblogging.data.remote.network.response.Author
+import com.tasks.microblogging.data.remote.network.response.Comment
 import com.tasks.microblogging.data.remote.network.response.Post
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -15,4 +16,10 @@ interface MicroBloggingAPI {
         @Query("authorId") authorId: Int, @Query("page") page: Int, @Query("_limit") limit: Int
         , @Query("_sort") sort: String, @Query("_order") order: String
     ): Single<List<Post>>
+
+    @GET("comments")
+    fun loadPostComments(
+        @Query("postId") postId: Int, @Query("page") page: Int, @Query("_limit") limit: Int
+        , @Query("_sort") sort: String, @Query("_order") order: String
+    ): Single<List<Comment>>
 }
