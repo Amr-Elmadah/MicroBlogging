@@ -51,7 +51,6 @@ class AuthorDetailsActivity : AppCompatActivity(), BaseRecyclerAdapter.OnLoadMor
     private var page = 1
     private val limit = Constants.PAGE_SIZE
     private var isLastPage = false
-    private var mPosts = ArrayList<Post>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -137,22 +136,21 @@ class AuthorDetailsActivity : AppCompatActivity(), BaseRecyclerAdapter.OnLoadMor
 
     private fun fillData(posts: List<Post>) {
         if (page == 1) {
-            mPosts = ArrayList(posts)
-            adapter.replaceAllItems(mPosts.toMutableList())
+            adapter.replaceAllItems(posts.toMutableList())
+            adapter.addOnLoadMoreListener(this, rvPosts, manager)
         } else {
-            mPosts.addAll(posts)
-            adapter.addMoreItems(mPosts.toMutableList())
+            adapter.addMoreItems(posts.toMutableList())
         }
 
-        isLastPage = mPosts.size < limit || posts.isEmpty()
+        isLastPage = posts.isEmpty() || posts.size < limit
 
         if (!isLastPage) {
             page++
         }
 
         srlPosts.isRefreshing = false
-        rvPosts.setVisible(mPosts.isNotEmpty())
-        llNoData.setVisible(mPosts.isEmpty())
+        rvPosts.setVisible(adapter.data.isNotEmpty())
+        llNoData.setVisible(adapter.data.isEmpty())
     }
 
     private fun openPostCommentsActivity(post: Post) {

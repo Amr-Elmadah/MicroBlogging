@@ -125,7 +125,11 @@ abstract class BaseRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHo
 
     fun addMoreItems(items: MutableList<T>) {
         val lastIndex = itemCount
-        getItems().addAll(items)
+        if (data.isNotEmpty()) {
+            data.addAll(items)
+        } else {
+            data = items
+        }
         notifyItemRangeInserted(lastIndex, items.size)
     }
 

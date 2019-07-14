@@ -30,10 +30,8 @@ class PostCommentsViewModel @Inject constructor(
             }
             .subscribe({
                 it?.let {
-                    if (it.isNotEmpty()) {
-                        commentsList = it.toMutableList()
-                        mComments.value = commentsList
-                    }
+                    commentsList = it.toMutableList()
+                    mComments.value = commentsList
                 }
             }, {
                 (it as? MicroBloggingException).let {

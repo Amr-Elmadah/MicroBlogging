@@ -12,7 +12,7 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
-class NetworkModule(val baseURL: String = "") {
+class NetworkModule(private val baseURL: String = "") {
 
     object DAGGER_CONSTANTS {
         const val BASE_URL = "baseUrlString"

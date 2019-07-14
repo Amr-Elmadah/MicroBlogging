@@ -30,10 +30,8 @@ class AuthorDetailsViewModel @Inject constructor(
             }
             .subscribe({
                 it?.let {
-                    if (it.isNotEmpty()) {
-                        postsList = it.toMutableList()
-                        mPosts.value = postsList
-                    }
+                    postsList = it.toMutableList()
+                    mPosts.value = postsList
                 }
             }, {
                 (it as? MicroBloggingException).let {

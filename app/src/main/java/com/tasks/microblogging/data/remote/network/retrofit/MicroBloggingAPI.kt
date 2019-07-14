@@ -13,12 +13,12 @@ interface MicroBloggingAPI {
 
     @GET("posts")
     fun loadAuthorPosts(
-        @Query("authorId") authorId: Int, @Query("page") page: Int, @Query("_limit") limit: Int
+        @Query("authorId") authorId: Int, @Query("_page") page: Int, @Query("_limit") limit: Int
     ): Single<List<Post>>
 
     @GET("comments")
     fun loadPostComments(
-        @Query("postId") postId: Int, @Query("page") page: Int, @Query("_limit") limit: Int
+        @Query("postId") postId: Int, @Query("_page") page: Int, @Query("_limit") limit: Int
         , @Query("_sort") sort: String, @Query("_order") order: String
     ): Single<List<Comment>>
 }

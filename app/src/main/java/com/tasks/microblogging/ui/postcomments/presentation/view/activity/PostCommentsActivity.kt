@@ -51,7 +51,6 @@ class PostCommentsActivity : AppCompatActivity(), BaseRecyclerAdapter.OnLoadMore
     private val sort = "date"
     private val order = "asc"
     private var isLastPage = false
-    private var mComments = ArrayList<Comment>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,21 +132,20 @@ class PostCommentsActivity : AppCompatActivity(), BaseRecyclerAdapter.OnLoadMore
 
     private fun fillData(comments: List<Comment>) {
         if (page == 1) {
-            mComments = ArrayList(comments)
-            adapter.replaceAllItems(mComments.toMutableList())
+            adapter.replaceAllItems(comments.toMutableList())
+            adapter.addOnLoadMoreListener(this, rvComments, manager)
         } else {
-            mComments.addAll(comments)
-            adapter.addMoreItems(mComments.toMutableList())
+            adapter.addMoreItems(comments.toMutableList())
         }
 
-        isLastPage = mComments.size < limit || comments.isEmpty()
+        isLastPage = comments.isEmpty() || comments.size < limit
 
         if (!isLastPage) {
             page++
         }
 
         srlComments.isRefreshing = false
-        rvComments.setVisible(mComments.isNotEmpty())
-        llNoData.setVisible(mComments.isEmpty())
+        rvComments.setVisible(adapter.data.isNotEmpty())
+        llNoData.setVisible(adapter.data.isEmpty())
     }
 }
