@@ -16,7 +16,7 @@ data class Post(
     @SerializedName("body")
     var body: String,
     @SerializedName("authorId")
-    var authorId: String,
+    var authorId: Int,
     @SerializedName("imageUrl")
     var imageUrl: String
 ) : Parcelable

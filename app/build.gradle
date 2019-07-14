@@ -129,6 +129,7 @@ dependencies {
     androidTestImplementation presentationTestDependencies.espresso
     androidTestImplementation dataTestDependencies.junitRules
     testImplementation dataTestDependencies.mockitoInline
+    testImplementation dataTestDependencies.mockWebServer
     androidTestImplementation dataTestDependencies.mockito
     testImplementation dataTestDependencies.archCore
     implementation lifecycleDependencies.extensions

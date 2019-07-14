@@ -38,7 +38,6 @@ class AuthorsViewModel @Inject constructor(
                 it?.let {
                     if (it.isNotEmpty()) {
                         authorsList = it.toMutableList()
-                        authorsList.sortBy { it.name }
                         mAuthors.value = authorsList
                         saveAuthors(authorsList)
                     }

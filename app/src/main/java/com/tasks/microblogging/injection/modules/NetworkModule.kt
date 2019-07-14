@@ -12,7 +12,7 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
-class NetworkModule {
+class NetworkModule(val baseURL: String = "") {
 
     object DAGGER_CONSTANTS {
         const val BASE_URL = "baseUrlString"
@@ -27,7 +27,11 @@ class NetworkModule {
     @Singleton
     @Named(value = DAGGER_CONSTANTS.BASE_URL)
     fun providesBaseUrl() =
-        if (BuildConfig.QA) ApiEndpointsConstants.StagingURL else ApiEndpointsConstants.ProductionURL
+        when {
+            baseURL.isNotEmpty() -> baseURL
+            BuildConfig.QA -> ApiEndpointsConstants.StagingURL
+            else -> ApiEndpointsConstants.ProductionURL
+        }
 
     @Provides
     @Singleton

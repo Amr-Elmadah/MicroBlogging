@@ -49,7 +49,7 @@ class PostCommentsActivity : AppCompatActivity(), BaseRecyclerAdapter.OnLoadMore
     private var page = 1
     private val limit = Constants.PAGE_SIZE
     private val sort = "date"
-    private val order = "desc"
+    private val order = "asc"
     private var isLastPage = false
     private var mComments = ArrayList<Comment>()
 
